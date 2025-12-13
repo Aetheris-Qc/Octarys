@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Technicien informatique à Trois-Rivières. Dépannage à distance et en présentiel : virus, PC lent, réseau, sauvegarde, récupération, clonage, installation Windows/Linux/macOS, PME." />
+  <title>Technicien Informatique — Trois-Rivières | Support à distance & sur place</title>
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --border: rgba(255,255,255,.12);
+      --blue: #2f81f7;
+      --blue2:#1f6feb;
+      --gray: #9aa4b2;
+      --ok: #2dd4bf;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 12px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(47,129,247,.35), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(31,111,235,.25), transparent 60%),
+        radial-gradient(900px 600px at 50% 90%, rgba(154,164,178,.20), transparent 55%),
+        linear-gradient(180deg, #050a14 0%, var(--bg) 40%, #040812 100%);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(5,10,20,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      white-space: nowrap;
+    }
+    .logo{
+      width: 36px; height: 36px;
+      border-radius: 12px;
+      background:
+        radial-gradient(18px 18px at 35% 30%, rgba(255,255,255,.60), transparent 60%),
+        linear-gradient(135deg, rgba(47,129,247,1), rgba(31,111,235,1));
+      box-shadow: 0 10px 30px rgba(47,129,247,.25);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; align-items:center; gap: 8px;
+    }
+    nav a{
+      display:inline-flex;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+    nav a:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    .cta{
+      display:flex; gap: 10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      box-shadow: none;
+      cursor: pointer;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      font-weight: 650;
+    }
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.20); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      border-color: rgba(255,255,255,.22);
+      box-shadow: 0 12px 34px rgba(47,129,247,.25);
+    }
+    .btn.primary:hover{ filter: brightness(1.03); }
+
+    .badge{
+      display:inline-flex; align-items:center; gap: 8px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 6px rgba(45,212,191,.10);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 48px 0 26px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .h-card{
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .h-card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(600px 180px at 20% 0%, rgba(47,129,247,.22), transparent 60%),
+        radial-gradient(450px 180px at 80% 20%, rgba(31,111,235,.18), transparent 55%);
+      pointer-events:none;
+    }
+    .h-card > *{ position: relative; }
+
+    h1{
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.08;
+      margin: 10px 0 12px;
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0 0 16px;
+      max-width: 62ch;
+    }
+    .mini{
+      display:flex; flex-wrap:wrap; gap: 10px;
+      margin: 16px 0 0;
+    }
+    .mini .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .stat{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .stat strong{
+      display:block;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .stat p{ margin:0; color: var(--muted); }
+
+    /* Sections */
+    section{ padding: 28px 0; }
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 0 0 14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+    .section-title .hint{
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 6;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 34px rgba(0,0,0,.22);
+    }
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .icon{
+      width: 30px; height: 30px;
+      border-radius: 12px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background: rgba(47,129,247,.16);
+      border: 1px solid rgba(47,129,247,.25);
+    }
+    .icon svg{ width: 18px; height: 18px; fill: rgba(255,255,255,.88); }
+
+    ul.clean{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    ul.clean li{ margin: 6px 0; }
+
+    .two{
+      grid-column: span 6;
+    }
+    .full{
+      grid-column: span 12;
+    }
+
+    /* Tools / chips */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip{
+      font-size: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Contact */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    form{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin:0;
+    }
+    label{
+      font-size: 13px;
+      color: var(--muted);
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+    input, textarea, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(47,129,247,.65);
+      box-shadow: 0 0 0 6px rgba(47,129,247,.16);
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    .note{
+      font-size: 13px;
+      color: var(--muted2);
+      margin: 4px 0 0;
+    }
+    .toast{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      display:none;
+    }
+    .toast.ok{ border-color: rgba(45,212,191,.25); background: rgba(45,212,191,.10); color: rgba(225,255,250,.92); }
+    .toast.err{ border-color: rgba(239,68,68,.25); background: rgba(239,68,68,.12); color: rgba(255,235,235,.92); }
+
+    /* Footer */
+    footer{
+      padding: 30px 0 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .foot{
+      display:flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Mobile */
+    .burger{
+      display:none;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .contact-wrap{ grid-template-columns: 1fr; }
+      .card{ grid-column: span 12; }
+      nav ul{ display:none; }
+      .burger{ display:inline-flex; }
+      .nav.open nav ul{
+        display:flex;
+        position:absolute;
+        left: 20px;
+        right: 20px;
+        top: 64px;
+        flex-direction:column;
+        gap: 6px;
+        padding: 10px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(5,10,20,.92);
+        box-shadow: var(--shadow);
+      }
+      .cta{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav" id="nav">
+        <a class="brand" href="#top" aria-label="Accueil">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Technicien Informatique — Trois-Rivières</span>
+        </a>
+
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu">Menu</button>
+
+        <nav aria-label="Navigation">
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#outils">Outils</a></li>
+            <li><a href="#zone">Zone</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <a class="btn" href="#contact">Demander un diagnostic</a>
+          <a class="btn primary" href="#contact">Me contacter</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="h-card">
+            <span class="badge"><span class="dot" aria-hidden="true"></span> Disponible — à distance & sur place</span>
+            <h1>Support informatique pro, clair et efficace.<br/>À Trois-Rivières et partout au Québec (à distance).</h1>
+            <p class="lead">
+              Dépannage Windows, retrait de virus, problèmes Internet/Wi-Fi, sauvegardes, récupération de données,
+              clonage vers SSD, réinstallation, et support PME. Diagnostic rigoureux + solutions expliquées.
+            </p>
+            <div class="cta" style="margin-top:14px;">
+              <a class="btn primary" href="#contact">Obtenir une prise en charge</a>
+              <a class="btn" href="#services">Voir les services</a>
+            </div>
+
+            <div class="mini">
+              <span class="pill">Intervention rapide</span>
+              <span class="pill">Particuliers & PME</span>
+              <span class="pill">Outils pro (bootables + diagnostic)</span>
+              <span class="pill">Rapport clair & recommandations</span>
+            </div>
+          </div>
+
+          <div class="side">
+            <div class="stat">
+              <strong>À distance</strong>
+              <p>Réglage des problèmes logiciels, réseau, sécurité, optimisation, assistance guidée.</p>
+            </div>
+            <div class="stat">
+              <strong>En présentiel</strong>
+              <p>Matériel, bootables, clonage, récupération avancée, installation complète, PME.</p>
+            </div>
+            <div class="stat">
+              <strong>Approche</strong>
+              <p>Diagnostic → explication → solution. Pas de jargon inutile, pas de cache-misère.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Services</h2>
+          <div class="hint">Tous les services ci-dessous sont offerts selon la situation (à distance / sur place).</div>
+        </div>
+
+        <div class="grid">
+          <!-- Distance -->
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v9h12V6H6zm2 14h8v2H8v-2z"/></svg>
+              </span>
+              Interventions <span style="color:var(--blue);">À DISTANCE</span>
+            </h3>
+
+            <ul class="clean">
+              <li><strong>Dépannage logiciel & Windows</strong> : PC lent/instable, erreurs, BSOD, réparation système (SFC/DISM), optimisation démarrage & services.</li>
+              <li><strong>Virus / malwares / pubs</strong> : désinfection, suppression adwares/spywares/trojans, analyses approfondies, sécurisation après incident.</li>
+              <li><strong>Internet & Réseau</strong> : Wi-Fi qui coupe, lenteur, DNS/IP, conflits réseau, analyse des connexions et du trafic.</li>
+              <li><strong>Sécurité & confidentialité</strong> : pare-feu, vérification connexions suspectes, chiffrement de fichiers, audit rapide poste.</li>
+              <li><strong>Sauvegarde & récupération (logique)</strong> : sauvegardes automatisées, récupération fichiers supprimés (si disque accessible), transfert PC→PC, migration profil.</li>
+              <li><strong>Assistance avancée</strong> : diagnostic assisté par IA locale, rapport technique + plan de correction, accompagnement humain en direct.</li>
+            </ul>
+          </article>
+
+          <!-- Presentiel -->
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true" style="background: rgba(154,164,178,.14); border-color: rgba(154,164,178,.22);">
+                <svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h10V4H7zm2 14h6v2H9v-2z"/></svg>
+              </span>
+              Interventions <span style="color:var(--gray);">EN PRÉSENTIEL</span>
+            </h3>
+
+            <ul class="clean">
+              <li><strong>Réparation matérielle</strong> : diagnostic HDD/SSD (SMART/surface), RAM, surchauffe, tests matériels intensifs.</li>
+              <li><strong>Démarrage & systèmes</strong> : PC qui ne démarre plus, réparation via USB bootable, réinstallation Windows/Linux/macOS, dual-boot.</li>
+              <li><strong>Clonage & image complète</strong> : migration disque → SSD, clonage, sauvegarde image avant réparation majeure.</li>
+              <li><strong>Récupération de données avancée</strong> : disque non reconnu, partitions endommagées, analyses via environnements spécialisés.</li>
+              <li><strong>Installation & configuration</strong> : logiciels, imprimantes, scanners, NAS, sauvegarde locale ou réseau.</li>
+              <li><strong>PME / Avancé</strong> : postes multiples, diagnostic réseau local, assistance infrastructure légère, support serveurs/NAS/virtualisation.</li>
+            </ul>
+          </article>
+
+          <!-- What you get -->
+          <article class="card full">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm1.07-7.75-.9.92A1.5 1.5 0 0 0 13 12v1h-2v-1a3.5 3.5 0 0 1 1.02-2.48l1.24-1.26A1.5 1.5 0 1 0 11 6.5H9A3.5 3.5 0 1 1 14.07 9.25z"/></svg>
+              </span>
+              Ce que tu obtiens
+            </h3>
+            <div class="grid" style="gap:12px;">
+              <div class="card two" style="background: rgba(255,255,255,.04); box-shadow:none;">
+                <strong>Diagnostic rigoureux</strong>
+                <p style="margin:6px 0 0; color:var(--muted);">On identifie la vraie cause (pas juste les symptômes), puis on applique la bonne correction.</p>
+              </div>
+              <div class="card two" style="background: rgba(255,255,255,.04); box-shadow:none;">
+                <strong>Explications claires</strong>
+                <p style="margin:6px 0 0; color:var(--muted);">Tu comprends ce qui se passe, ce qui a été fait, et comment éviter que ça revienne.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTILS -->
+    <section id="outils">
+      <div class="container">
+        <div class="section-title">
+          <h2>Outils professionnels utilisés</h2>
+          <div class="hint">Accès distant + bootables + diagnostic matériel + analyse réseau + IA locale.</div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M10 3H5a2 2 0 0 0-2 2v5h2V5h5V3zm9 0h-5v2h5v5h2V5a2 2 0 0 0-2-2zM5 14H3v5a2 2 0 0 0 2 2h5v-2H5v-5zm16 0h-2v5h-5v2h5a2 2 0 0 0 2-2v-5z"/></svg>
+              </span>
+              À distance (accès sécurisé)
+            </h3>
+            <div class="chips" aria-label="Outils à distance">
+              <span class="chip">AnyDesk</span>
+              <span class="chip">RustDesk</span>
+              <span class="chip">WireGuard</span>
+              <span class="chip">UltraVNC</span>
+              <span class="chip">Analyse réseau</span>
+              <span class="chip">Diagnostic guidé</span>
+            </div>
+            <p class="note">*Toujours avec consentement du client, et uniquement pour diagnostiquer/résoudre le problème.</p>
+          </article>
+
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
+              </span>
+              Bootables & suites (sur place)
+            </h3>
+            <div class="chips" aria-label="Suites bootables">
+              <span class="chip">WinPE (Sergei Strelec)</span>
+              <span class="chip">HBCD PE</span>
+              <span class="chip">SystemRescue</span>
+              <span class="chip">GParted Live</span>
+              <span class="chip">Clonezilla</span>
+              <span class="chip">Rescuezilla</span>
+              <span class="chip">Kali Linux</span>
+              <span class="chip">OPNsense</span>
+            </div>
+          </article>
+
+          <article class="card full">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5 3.8 9.7 9 12 5.2-2.3 9-7 9-12V5l-9-4zm0 6a3 3 0 0 1 3 3 3 3 0 0 1-1.2 2.4l.2 2.6h-4l.2-2.6A3 3 0 0 1 9 10a3 3 0 0 1 3-3z"/></svg>
+              </span>
+              Sécurité, désinfection, récupération, clonage
+            </h3>
+            <div class="chips">
+              <span class="chip">Malwarebytes</span>
+              <span class="chip">AdwCleaner</span>
+              <span class="chip">Sophos Scan & Clean</span>
+              <span class="chip">HitmanPro</span>
+              <span class="chip">TestDisk</span>
+              <span class="chip">R-Studio</span>
+              <span class="chip">Acronis / AOMEI</span>
+              <span class="chip">VeraCrypt</span>
+              <span class="chip">Wireshark / Nmap</span>
+              <span class="chip">Sysinternals</span>
+              <span class="chip">IA locale (Aetheris-QC)</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZONE -->
+    <section id="zone">
+      <div class="container">
+        <div class="section-title">
+          <h2>Zone desservie</h2>
+          <div class="hint">Trois-Rivières + environs • À distance partout au Québec</div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z"/></svg>
+              </span>
+              Présentiel
+            </h3>
+            <ul class="clean">
+              <li>Trois-Rivières</li>
+              <li>Cap-de-la-Madeleine</li>
+              <li>Pointe-du-Lac</li>
+              <li>Environs (selon disponibilité)</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 8 8h-2a6 6 0 1 1-6-6V4zm1 0h-2v9h9v-2h-7V4z"/></svg>
+              </span>
+              À distance
+            </h3>
+            <ul class="clean">
+              <li>Partout au Québec</li>
+              <li>Prise en charge rapide (selon urgence)</li>
+              <li>Accès sécurisé (avec consentement)</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <div class="hint">Formulaire + infos. Tu peux aussi remplacer par tes coordonnées réelles.</div>
+        </div>
+
+        <div class="contact-wrap">
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-1-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1L3 7v1l9 5 9-5zm0 2-9 5-9-5v9h18v-9z"/></svg>
+              </span>
+              Envoyer une demande
+            </h3>
+
+            <!--
+              IMPORTANT:
+              - Par défaut, ce formulaire n'envoie pas "magiquement" un email.
+              - Il prépare un message et ouvre l'application mail (mailto) OU tu peux le brancher à ton backend plus tard.
+              - Remplace EMAIL_A_REMPLACER par ton email.
+            -->
+            <form id="contactForm" novalidate>
+              <label>
+                Nom
+                <input name="name" type="text" autocomplete="name" placeholder="Votre nom" required />
+              </label>
+
+              <label>
+                Courriel
+                <input name="email" type="email" autocomplete="email" placeholder="ex: nom@domaine.com" required />
+              </label>
+
+              <label>
+                Téléphone (optionnel)
+                <input name="phone" type="tel" autocomplete="tel" placeholder="ex: 819-000-0000" />
+              </label>
+
+              <label>
+                Type d’intervention
+                <select name="type" required>
+                  <option value="" selected disabled>Choisir…</option>
+                  <option value="distance">À distance</option>
+                  <option value="presentiel">En présentiel (Trois-Rivières)</option>
+                  <option value="pme">PME / multi-postes</option>
+                </select>
+              </label>
+
+              <label>
+                Description du problème
+                <textarea name="message" placeholder="Décris ce qui se passe, depuis quand, et ce que tu as déjà essayé." required></textarea>
+              </label>
+
+              <button class="btn primary" type="submit">Envoyer la demande</button>
+              <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+              <p class="note">
+                Astuce : plus tu donnes de détails (message d’erreur, modèle PC, changements récents), plus le diagnostic est rapide.
+              </p>
+            </form>
+          </article>
+
+          <article class="card">
+            <h3>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/></svg>
+              </span>
+              Coordonnées
+            </h3>
+
+            <p style="margin:0 0 10px; color:var(--muted);">
+              Remplace ces champs par tes infos réelles :
+            </p>
+
+            <div class="chips" style="margin-bottom:10px;">
+              <span class="chip">📍 Trois-Rivières, QC</span>
+              <span class="chip">🕒 Sur rendez-vous</span>
+              <span class="chip">🧠 Diagnostic rigoureux</span>
+            </div>
+
+            <ul class="clean">
+              <li><strong>Courriel :</strong> EMAIL_A_REMPLACER</li>
+              <li><strong>Téléphone :</strong> TÉLÉPHONE_A_REMPLACER</li>
+              <li><strong>Disponibilité :</strong> Semaine / Soir / Week-end (à préciser)</li>
+            </ul>
+
+            <div style="margin-top:14px;">
+              <a class="btn" href="#services">Voir les services</a>
+              <a class="btn primary" href="#top" style="margin-left:8px;">Retour en haut</a>
+            </div>
+
+            <p class="note" style="margin-top:12px;">
+              Tu peux aussi brancher ce formulaire à un backend (FastAPI / Node / n8n) pour recevoir les demandes automatiquement.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>© <span id="year"></span> — Technicien Informatique, Trois-Rivières</div>
+        <div style="opacity:.85;">Bleu/Gris • Design moderne • Responsive • 1 fichier</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const nav = document.getElementById('nav');
+    const burger = document.getElementById('burger');
+    burger?.addEventListener('click', () => nav.classList.toggle('open'));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form behavior:
+    // - Validate
+    // - Build a mailto link (replace EMAIL_A_REMPLACER)
+    // NOTE: For a real hosted form, connect to your backend endpoint instead.
+    const FORM_EMAIL = "EMAIL_A_REMPLACER"; // <-- remplace par ton email
+
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg, type){
+      toast.textContent = msg;
+      toast.className = "toast " + (type || "");
+      toast.style.display = "block";
+    }
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const name = (data.get('name') || "").toString().trim();
+      const email = (data.get('email') || "").toString().trim();
+      const phone = (data.get('phone') || "").toString().trim();
+      const type = (data.get('type') || "").toString().trim();
+      const message = (data.get('message') || "").toString().trim();
+
+      if(!name || !email || !type || !message){
+        showToast("Merci de remplir les champs obligatoires (Nom, Courriel, Type, Description).", "err");
+        return;
+      }
+
+      // Simple email check
+      const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if(!okEmail){
+        showToast("Le courriel semble invalide. Vérifie l’adresse et réessaie.", "err");
+        return;
+      }
+
+      if(FORM_EMAIL.includes("A_REMPLACER")){
+        showToast("⚠️ Remplace EMAIL_A_REMPLACER dans le code (FORM_EMAIL) pour activer l’envoi via mail.", "err");
+        return;
+      }
+
+      const subject = encodeURIComponent(`[Demande] ${type.toUpperCase()} — ${name}`);
+      const body = encodeURIComponent(
+        `Nom: ${name}\n` +
+        `Courriel: ${email}\n` +
+        `Téléphone: ${phone || "(non fourni)"}\n` +
+        `Type: ${type}\n\n` +
+        `Description:\n${message}\n\n` +
+        `---\nEnvoyé depuis le site web.`
+      );
+
+      // Opens default mail client
+      const mailto = `mailto:${encodeURIComponent(FORM_EMAIL)}?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+
+      showToast("✅ Préparation du message… ton logiciel courriel va s’ouvrir.", "ok");
+      form.reset();
+    });
+  </script>
+</body>
+</html>
