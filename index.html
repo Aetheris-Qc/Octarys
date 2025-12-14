@@ -679,7 +679,7 @@
               IMPORTANT:
               - Par défaut, ce formulaire n'envoie pas "magiquement" un email.
               - Il prépare un message et ouvre l'application mail (mailto) OU tu peux le brancher à ton backend plus tard.
-              - Remplace EMAIL_A_REMPLACER par ton email.
+              - Remplace blmathieu25@gmail.com par ton email.
             -->
             <form id="contactForm" novalidate>
               <label>
@@ -740,9 +740,8 @@
             </div>
 
             <ul class="clean">
-              <li><strong>Courriel :</strong> EMAIL_A_REMPLACER</li>
-              <li><strong>Téléphone :</strong> TÉLÉPHONE_A_REMPLACER</li>
-              <li><strong>Disponibilité :</strong> Semaine / Soir / Week-end (à préciser)</li>
+              <li><strong>Courriel :</strong> blmathieu25@gmail.com</li>
+              <li><strong>Disponibilité :</strong> Semaine / Soir / Week-end</li>
             </ul>
 
             <div style="margin-top:14px;">
@@ -779,9 +778,9 @@
 
     // Contact form behavior:
     // - Validate
-    // - Build a mailto link (replace EMAIL_A_REMPLACER)
+    // - Build a mailto link (replace blmathieu25@gmail.com)
     // NOTE: For a real hosted form, connect to your backend endpoint instead.
-    const FORM_EMAIL = "EMAIL_A_REMPLACER"; // <-- remplace par ton email
+    const FORM_EMAIL = "blmathieu25@gmail.com"; // <-- remplace par ton email
 
     const form = document.getElementById('contactForm');
     const toast = document.getElementById('toast');
@@ -815,7 +814,7 @@
       }
 
       if(FORM_EMAIL.includes("A_REMPLACER")){
-        showToast("⚠️ Remplace EMAIL_A_REMPLACER dans le code (FORM_EMAIL) pour activer l’envoi via mail.", "err");
+        showToast("⚠️ Remplace blmathieu25@gmail.com dans le code (FORM_EMAIL) pour activer l’envoi via mail.", "err");
         return;
       }
 
